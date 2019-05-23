@@ -1,6 +1,7 @@
+// REST API server
+
 // require dependencies
 const express = require("express");
-const bodyParser = require("body-parser");
 const cors = require("cors");
 const mongoose = require("mongoose");
 
@@ -13,7 +14,7 @@ const port = process.env.PORT || 5000;
 
 // middleware
 app.use(cors());
-app.use(bodyParser.json()); // send and receive data as json - for .post() requests
+app.use(express.json()); // send and receive data as json - for .post() requests
 
 // connect to MongoDB Atlas so server can access DB
 const uri = process.env.ATLAS_URI;
