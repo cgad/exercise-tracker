@@ -3,8 +3,12 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "bootstrap": "^4.3.1",
     "react": "^16.8.6",
+    "react-bootstrap": "^1.0.0-beta.8",
+    "react-datepicker": "^2.5.0",
     "react-dom": "^16.8.6",
+    "react-router-dom": "^5.0.0",
     "react-scripts": "3.0.1"
   },
   "scripts": {
@@ -27,5 +31,18 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
-  }
+  },
+  "description": "A web app with MERN Stack and Google Cloud Platform",
+  "main": "index.js",
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cgad/exercise-tracker.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/cgad/exercise-tracker/issues"
+  },
+  "homepage": "https://github.com/cgad/exercise-tracker#readme"
 }

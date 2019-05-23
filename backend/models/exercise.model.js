@@ -11,11 +11,11 @@ const exerciseSchema = new Schema(
       required: true,
       trim: true
     },
-    name: {
-      type: String,
-      required: true,
-      trim: true
-    },
+    // name: {
+    //   type: String,
+    //   required: true,
+    //   trim: true
+    // },
     description: {
       type: String,
       required: false,
@@ -31,11 +31,11 @@ const exerciseSchema = new Schema(
       required: false,
       trim: true
     },
-    equipment: {
-      type: String,
-      required: false,
-      trim: true
-    },
+    // equipment: {
+    //   type: String,
+    //   required: false,
+    //   trim: true
+    // },
     date: {
       type: Date,
       required: true
