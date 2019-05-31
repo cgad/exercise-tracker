@@ -1,4 +1,5 @@
 import React from "react";
+import axios from "axios";
 import { Form, Button } from "react-bootstrap";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.min.css";
@@ -13,7 +14,7 @@ export default class CreateExercise extends React.Component {
       // name: '',
       description: "",
       duration: 0,
-      location: "",
+      // location: "",
       // equipment: '',
       date: new Date(),
       users: []
@@ -27,17 +28,23 @@ export default class CreateExercise extends React.Component {
 
   // before anything is rendered on page
   componentDidMount() {
-    this.setState({
-      // TO DO: load from database, but for now hardcoded
-      users: ["test user"],
-      username: "test user"
-      // set username so default username on the form is the first user from the dropdown list
-    });
-
-    // if no users, redirect to create user page
-    // if (this.state.users.length === 0) {
-    //   window.location = '/user'
-    // }
+    axios
+      .get("http://localhost:5000/users/")
+      .then(users => {
+        if (users.data.length > 0) {
+          this.setState({
+            // load from database
+            users: users.data.map(user => user.username),
+            username: users.data[users.data.length - 1].username
+            // set username so default username on the form is the last item in users array just in case redirect comes from new user creation
+            // ? can i track redirects and only do last index in array if redirected ?
+          });
+        } else {
+          // if no users, redirect to create user page
+          window.location = "/user";
+        }
+      })
+      .catch(err => console.log(err));
   }
 
   // everything but date
@@ -61,15 +68,20 @@ export default class CreateExercise extends React.Component {
       username: this.state.username,
       description: this.state.description,
       duration: this.state.duration,
-      location: this.state.location,
+      // location: this.state.location,
       date: this.state.date
     };
 
-    // TO DO: submit new exercise object to backend API to update DB
-    console.log(exercise);
+    // send to new exercise object backend server
+    axios
+      .post("http://localhost:5000/exercises/add", exercise)
+      .then(res => console.log(res.data));
 
-    // redirect to home page (list of exercises)
-    // window.location = "/";
+    this.setState({
+      description: "",
+      duration: 0,
+      date: new Date()
+    });
   };
 
   render() {
@@ -107,9 +119,17 @@ export default class CreateExercise extends React.Component {
           </Form.Group>
           <Form.Group controlId="exerciseLogForm.duration">
             <Form.Label>Duration (in minutes)</Form.Label>
-            <Form.Control type="number" min="10" placeholder="1" required />
+            <Form.Control
+              type="number"
+              min="1"
+              placeholder="1"
+              required
+              name="duration"
+              value={this.state.duration}
+              onChange={this.onInputChange}
+            />
           </Form.Group>
-          <Form.Group controlId="exerciseLogForm.location">
+          {/* <Form.Group controlId="exerciseLogForm.location">
             <Form.Label>Location</Form.Label>
             <Form.Control
               as="select"
@@ -123,7 +143,7 @@ export default class CreateExercise extends React.Component {
               <option value="home">Home</option>
               <option value="outdoors">Outdoors</option>
             </Form.Control>
-          </Form.Group>
+          </Form.Group> */}
           <Form.Group controlId="exerciseLogForm.date">
             <Form.Label>Date</Form.Label>
             <br />

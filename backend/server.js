@@ -26,8 +26,8 @@ connection.once("open", () => {
 });
 
 // require backend api routes
-const usersRouter = require("./routes/users.api");
-const exercisesRouter = require("./routes/exercises.api");
+const usersRouter = require("./routes/users.api.js");
+const exercisesRouter = require("./routes/exercises.api.js");
 
 // add routes as middleware
 app.use("/users", usersRouter); // /users endpoints

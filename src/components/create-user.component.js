@@ -1,4 +1,5 @@
 import React from "react";
+import axios from "axios"; // HTTP requests to backend
 import { Form, Button } from "react-bootstrap";
 
 export default class CreateUser extends React.Component {
@@ -23,11 +24,14 @@ export default class CreateUser extends React.Component {
       username: this.state.username
     };
 
-    // TO DO: submit new user object to backend API to update DB
-    console.log(user);
+    // send new user object to backend server
+    axios
+      .post("http://localhost:5000/users/add", user)
+      .then(res => console.log(res.data))
+      .catch(err => console.log(err));
 
-    // clear input field
-    this.setState({ username: "" });
+    // redirect to log exercise page
+    window.location = "/log";
   };
 
   render() {

@@ -17,6 +17,7 @@ router.route("/").get((req, res) => {
 // /users/add endpoint
 router.route("/add").post((req, res) => {
   const { username } = req.body;
+  // create new user
   const newUser = new User({ username });
 
   // save new exercise document to DB

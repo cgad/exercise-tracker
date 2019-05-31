@@ -21,7 +21,7 @@ router.route("/add").post((req, res) => {
     name,
     description,
     duration,
-    location,
+    // location,
     equipment,
     date
   } = req.body;
@@ -31,7 +31,7 @@ router.route("/add").post((req, res) => {
     name,
     description,
     duration,
-    location,
+    // location,
     equipment,
     date
   });
@@ -60,7 +60,7 @@ router.route("/:id").post((req, res) => {
       exercise.name = req.body.name;
       exercise.description = req.body.description;
       exercise.duration = Number(req.body.duration);
-      exercise.location = req.body.location;
+      // exercise.location = req.body.location;
       exercise.equipment = req.body.equipment;
       exercise.date = Date.parse(req.body.date);
 

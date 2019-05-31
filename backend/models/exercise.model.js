@@ -26,11 +26,11 @@ const exerciseSchema = new Schema(
       required: true,
       trim: true
     },
-    location: {
-      type: String,
-      required: false,
-      trim: true
-    },
+    // location: {
+    //   type: String,
+    //   required: false,
+    //   trim: true
+    // },
     // equipment: {
     //   type: String,
     //   required: false,
